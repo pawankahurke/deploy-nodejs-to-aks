@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    - uses: jfrog/setup-jfrog-cli@v3
+    - run: jf --version
     - name: Install kubectl
       uses: azure/setup-kubectl@v2.0
       with:
