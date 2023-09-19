@@ -32,6 +32,16 @@ jobs:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REPOSITORY: pawankahurke
         IMAGE_TAG: 1.1
-      run: |
+      run: 
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
+    - name: jfrog-integration
+    - uses: jfrog/setup-jfrog-cli@v3
+      env:
+    # JFrog platform url (for example: https://acme.jfrog.io) 
+     JF_URL: ${{ secrets.JF_URL }}
+    
+    # Basic authentication credentials
+     JF_USER: ${{ secrets.JF_USER }}
+     JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
