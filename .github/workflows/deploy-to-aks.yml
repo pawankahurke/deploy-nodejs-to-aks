@@ -35,7 +35,8 @@ jobs:
       run: 
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-
+  jobs:
+    jfrog:
     - name: jfrog-integration
     - uses: jfrog/setup-jfrog-cli@v3
       env:
