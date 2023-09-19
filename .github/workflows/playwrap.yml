@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: npm clean install
+        run: npm install
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
@@ -23,5 +23,5 @@ jobs:
         if: always()
         with:
           name: playwright-report
-          path: ./playwright-report/
+          path: playwright-report/
           retention-days: 30
