@@ -32,4 +32,16 @@ jobs:
       run: |
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+deploy:
+       needs: build
+       runs-on: ubuntu-latest
+        steps:
+              - uses: azure/aks-set-context@v3
+           with:
+            cluster-name: YOUR_AKS_CLUSTER_NAME
+
+      - name: Deploy Node.js app to AKS
+        run: |
+          az aks get-credentials --resource-group YOUR_AKS_RESOURCE_GROUP --name YOUR_AKS_CLUSTER_NAME
+          kubectl apply -f deployment.yaml
   
